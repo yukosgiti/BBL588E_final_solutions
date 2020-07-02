@@ -21,6 +21,9 @@ You may use your favorite programming environment/language/tool for the followin
     \item Then, use intersection-over-union as a metric to measure the performance of your method.
 \end{itemize}
 
+
+For manual image segmentation, I used an open source project called Via. https://gitlab.com/vgg/via
+
 % ################################# QUESTION 2 ######################################
 \pagebreak
 \section{Question 2}\label{sec:q2}
@@ -43,7 +46,7 @@ Let's put the possible states in a table for better visualization.
 \begin{figure}[h]
     \centering
     \begin{center}
-        \begin{tabular}{ |c|c|c|} 
+        \begin{tabular}{|c|c|c|} 
          \hline
           & Diseased & Healthy \\ 
          \hline
@@ -78,9 +81,9 @@ From these information we can also infer the following: \\
 
 \(P(Healthy) = \ddfrac{FP + TN}{TP + FP + FN + TN} = 1 - P(Diseased)\) \\
 
-\(P(True Negative) = \ddfrac{TN}{FP + TN} = 1 - 5/10^{2}\) \\
+\(P(True Negative) = \ddfrac{TN}{FP + TN} = 1 - P(False Positive)\) \\
 
-\(P(True Positive) = \ddfrac{TP}{FN + TP} = 1 - 20/10^{2}\) \\
+\(P(True Positive) = \ddfrac{TP}{FN + TP} = 1 - P(False Negative)\) \\
 
 Now that we have the necessary information we can use the Bayes' Rule to solve the question.
 
@@ -102,7 +105,25 @@ This asks us the probability of test result being positive
 given a person is actually diseased. 
 From Figure \ref{table1} we can see that this corresponds to $TP /(TP + FN)$ which is actually $P(True Positive)$.
 
-We already know what $P(Diseased)$ is. Therefore, we only need to find what $P(Positive)$ is.
+We already know what $P(Diseased)$ is. 
+Therefore, only remaining unknown is $P(Positive)$.
+
+Again from Figure \ref{table1} we can see that $P(Positive)$ is $(TP + FP)/(TP + FP + FN + TN)$. 
+Which is something that we don't know the answer yet. 
+However it is something we can derive with the information we have by using some algebra.\\
+
+\begin{math}
+ \ddfrac{TP + FP}{TP + FP + FN + TN} = \\\\
+ \ddfrac{TP + FN}{TP + FP + FN + TN}\cdot\ddfrac{TP}{TP + FN} +
+ \ddfrac{FP + TN}{TP + FP + FN + TN}\cdot\ddfrac{FP}{FP + TN} \\\newline
+= P(Diseased)P(True Positive) + P(Healthy)P(False Positive)
+\end{math}
+
+\pagebreak
+Now let's rewrite $P(Diseased|Positive)$ with the things we know.\\
+
+    $ =\ddfrac{P(True Positive)P(Diseased)}{P(Diseased)P(True Positive) + P(Healthy)P(False Positive)}$
+
 \paragraph{Example 2}
 Now imagine that you went to a friend’s wedding in Spain recently (although it is forbidden to travel, for the sake of this very question assume you did so), and it is know that 6240 in 1,000,000 people who visited Spain recently come back with COVID-19. Given the same test result as above, what should your revised estimate be for the probability you have the disease?
 
