@@ -22,7 +22,13 @@ You may use your favorite programming environment/language/tool for the followin
 \end{itemize}
 
 
-For manual image segmentation, I used an open source project called Via. https://gitlab.com/vgg/via
+For manual image segmentation, I used an open source project called Via. The link to the project is: https://gitlab.com/vgg/via
+
+After segmenting the image and creating the label, I first converted the image into HSV color space. Then, I tried a bunch of threshold values for Hue and Saturation, and found a good combination of thresholds that distinctively separated the bee from the background. Then I ran edge detection algorithms and in the detected items list, I found out the index of the bee. With the bee index, I was then able to calculate the IoU score.
+
+The source code and the results can be found at:
+
+
 
 % ################################# QUESTION 2 ######################################
 \pagebreak
