@@ -26,7 +26,10 @@ For manual image segmentation, I used an open source project called Via. The lin
 After segmenting the image and creating the label, I first converted the image into HSV color space. Then, I tried a bunch of threshold values for Hue and Saturation, and found a good combination of thresholds that distinctively separated the bee from the background. Then I ran edge detection algorithms and in the detected items list, I found out the index of the bee. With the bee index, I was then able to calculate the IoU score.
 
 The source code and the results can be found at:
-https://github.com/yukosgiti/BBL588E_final_solutions/tree/master
+
+\begin{center}
+    \texttt{\detokenize{https://github.com/yukosgiti/BBL588Efinal_solutions/tree/master}}
+\end{center}
 
 
 
@@ -127,12 +130,23 @@ However it is something we can derive with the information we have by using some
 
 \pagebreak
 Now let's rewrite $P(Diseased|Positive)$ with the things we know.\\
-
+\begin{center}
     $ =\ddfrac{P(True Positive)P(Diseased)}{P(Diseased)P(True Positive) + P(Healthy)P(False Positive)}$
+    \newline
+    \newline
+    $=\ddfrac{(1 - 20/10^2)\times(2167/10^6)}{(2167/10^6)\times(1 - 20/10^2)+ (1 - 2167/10^6)\times5/10^2}$
+\end{center}
 
 \paragraph{Example 2}
 Now imagine that you went to a friend’s wedding in Spain recently (although it is forbidden to travel, for the sake of this very question assume you did so), and it is know that 6240 in 1,000,000 people who visited Spain recently come back with COVID-19. Given the same test result as above, what should your revised estimate be for the probability you have the disease?
 
 \paragraph{Solution 2}
-Deneme
+Probability of diseased should be changed from \(2167/10^6\) to \(6240/10^6\).
+\begin{center}
+    $ =\ddfrac{P(True Positive)P(Diseased)}{P(Diseased)P(True Positive) + P(Healthy)P(False Positive)}$
+    \newline
+    \newline
+    $=\ddfrac{(1 - 20/10^2)\times(6240/10^6)}{(6240/10^6)\times(1 - 20/10^2)+ (1 - 6240/10^6)\times5/10^2}$
+\end{center}
+
 \end{document}
